@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kenny.demo_backend_api.dto.PagamentoDTO;
 import com.kenny.demo_backend_api.producer.PagamentoRequestProducer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,5 +20,14 @@ public class PagamentoFacade {
             //throw new RuntimeException(e);
         }
         return "Pagamento aguardando confirmacao..." + request.getNumeroPedido();
+    }
+
+    public void erroPagamento(String payload) {
+        System.err.println(" ====== RESPOSTA ERROR ==== " + payload);
+    }
+
+    public void sucessoPagamento(String payload) {
+        System.out.println(" ====== RESPOSTA SUCESSO ==== " + payload);
+
     }
 }
